@@ -28,7 +28,7 @@ public class Album {
     public void printTrackListings() {
         System.out.println(name + " track listing...");
         for(int i = 0; i < songs.size(); i++) {
-            System.out.println((i + 1) + ". " + songs.get(i));
+            System.out.println((i + 1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist());
         }
     }
 }
