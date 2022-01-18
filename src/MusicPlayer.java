@@ -23,7 +23,9 @@ public class MusicPlayer extends Player {
 
     @Override
     public void play(Album album) {
-
+        for (Song song : album.getSongs()) {
+            play(song);
+        }
     }
 
     @Override
