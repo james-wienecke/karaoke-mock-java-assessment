@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class LyricPlayer extends Player {
+public class LyricsPlayer extends Player {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
@@ -11,11 +11,11 @@ public class LyricPlayer extends Player {
 
     private String textColor;
 
-    public LyricPlayer() {
+    public LyricsPlayer() {
         this.textColor = "default";
     }
 
-    public LyricPlayer(String textColor) {
+    public LyricsPlayer(String textColor) {
         this.textColor = textColor;
     }
 
@@ -54,29 +54,23 @@ public class LyricPlayer extends Player {
 
     @Override
     public void play(Album album) {
-        displayText(RESET + "Now playing: " + album.getName());
+        displayText("Album: " + album.getName() + '\n');
         album.getSongs().forEach(this::play);
     }
 
     @Override
     public void play(Song song) {
-        displayText(RESET + "Now playing: " + song.getTitle() + " by " + song.getArtist());
+        displayText("Now playing: " + song.getTitle() + " by " + song.getArtist() + '\n');
         try {
             Thread.sleep(Player.INTRO_PAUSE);
-            for (String line : song.getLyrics()) {
-                Song.parseLyrics(line).forEach(word -> {
-                    try {
-                        displayText(word);
-                        Thread.sleep(MusicPlayer.WORD_CADENCE);
-                    } catch (InterruptedException ie) {
-                        ie.printStackTrace();
-                    }
-                });
-                System.out.print('\n');
+            for (String word : song.getLyrics()) {
+                displayText(word + ' ');
+                Thread.sleep(MusicPlayer.WORD_CADENCE);
             }
         } catch (InterruptedException ie) {
             ie.printStackTrace();
         }
-
+        // newline
+        System.out.println();
     }
 }

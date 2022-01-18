@@ -7,7 +7,7 @@ public class Song {
     private String title;
     private List<String> lyrics;
 
-    public Song(String artist, String title, List<String> lyrics) {
+    public Song(String title, String artist, List<String> lyrics) {
         this.artist = artist;
         this.title = title;
         this.lyrics = lyrics;
