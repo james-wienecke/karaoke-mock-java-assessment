@@ -23,9 +23,7 @@ public class MusicPlayer extends Player {
 
     @Override
     public void play(Album album) {
-        for (Song song : album.getSongs()) {
-            play(song);
-        }
+        album.getSongs().forEach(this::play);
     }
 
     @Override
@@ -33,8 +31,7 @@ public class MusicPlayer extends Player {
         Runtime r = Runtime.getRuntime();
         try {
             Thread.sleep(Player.INTRO_PAUSE);
-            List<String> lyrics = song.getLyrics();
-            for (String line : lyrics) {
+            for (String line : song.getLyrics()) {
                 Song.parseLyrics(line).forEach(word -> {
                     try {
                         r.exec("say " + word);
