@@ -38,10 +38,6 @@ public class Song {
     }
 
     public static List<String> parseLyrics(String input) {
-        List<String> words = new LinkedList<>();
-        String[] inputSplit = input.split(" ");
-
-        words.addAll(Arrays.asList(inputSplit));
-        return words;
+        return new LinkedList<>(Arrays.asList(input.split(" ")));
     }
 }
