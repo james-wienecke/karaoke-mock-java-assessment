@@ -54,17 +54,17 @@ public class LyricsPlayer extends Player {
 
     @Override
     public void play(Album album) {
-        displayText("Album: " + album.getName() + '\n');
+        displayText("Album: " + GREEN + album.getName() + '\n');
         album.getSongs().forEach(this::play);
     }
 
     @Override
     public void play(Song song) {
-        displayText("Now playing: " + song.getTitle() + " by " + song.getArtist() + '\n');
+        displayText(RESET + "Now playing: " + YELLOW + song.getTitle() + RESET + " by " + RED + song.getArtist() + '\n');
         try {
             Thread.sleep(Player.INTRO_PAUSE);
             for (String word : song.getLyrics()) {
-                displayText(word + ' ');
+                displayText( PURPLE + word + ' ');
                 Thread.sleep(MusicPlayer.WORD_CADENCE);
             }
         } catch (InterruptedException ie) {
