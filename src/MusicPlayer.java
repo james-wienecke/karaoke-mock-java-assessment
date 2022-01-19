@@ -30,9 +30,18 @@ public class MusicPlayer extends Player {
     public void play(Song song) {
         Runtime r = Runtime.getRuntime();
         try {
+            if (voice.isEmpty()) {
+                r.exec("say " + "Now playing: " + song.getTitle() + " by " + song.getArtist());
+            } else {
+                r.exec("say -v " + voice + " Now playing: " + song.getTitle() + " by " + song.getArtist());
+            }
             Thread.sleep(Player.INTRO_PAUSE);
             for (String word : song.getLyrics()) {
-                r.exec("say " + word);
+                if (voice.isEmpty()) {
+                    r.exec("say " + word);
+                } else {
+                    r.exec("say -v " + voice + " " + word);
+                }
                 Thread.sleep(MusicPlayer.WORD_CADENCE);
             }
         } catch (InterruptedException | IOException ie) {
