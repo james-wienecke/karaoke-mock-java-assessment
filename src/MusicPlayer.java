@@ -29,19 +29,12 @@ public class MusicPlayer extends Player {
     @Override
     public void play(Song song) {
         Runtime r = Runtime.getRuntime();
+        String sayCmd = (voice.isEmpty() ? "say " : "say -v " + voice + " ");
         try {
-            if (voice.isEmpty()) {
-                r.exec("say " + "Now playing: " + song.getTitle() + " by " + song.getArtist());
-            } else {
-                r.exec("say -v " + voice + " Now playing: " + song.getTitle() + " by " + song.getArtist());
-            }
+            r.exec(sayCmd + "Now playing: " + song.getTitle() + " by " + song.getArtist());
             Thread.sleep(Player.INTRO_PAUSE);
             for (String word : song.getLyrics()) {
-                if (voice.isEmpty()) {
-                    r.exec("say " + word);
-                } else {
-                    r.exec("say -v " + voice + " " + word);
-                }
+                r.exec(sayCmd + word);
                 Thread.sleep(MusicPlayer.WORD_CADENCE);
             }
         } catch (InterruptedException | IOException ie) {
