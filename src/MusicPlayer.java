@@ -1,8 +1,6 @@
 import java.io.IOException;
-import java.util.List;
 
 public class MusicPlayer extends Player {
-//    private static final int WORD_CADENCE = ;
     private String voice;
 
     public MusicPlayer() {
